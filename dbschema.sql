@@ -9,4 +9,13 @@ CREATE TABLE Users (
     CreatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP, -- Timestamp of account creation
     UpdatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP -- Timestamp of last update
 );
+CREATE TABLE Foods (
+    FoodID INT PRIMARY KEY AUTO_INCREMENT,          -- Unique identifier for each food item
+    DayOfMonth INT NOT NULL CHECK (DayOfMonth BETWEEN 1 AND 31), -- Day of the month (1-31)
+    DayOfWeek ENUM('Saturday', 'Sunday', 'Monday', 'Tuesday', 'Wednesday') NOT NULL, -- Allowed days
+    FoodName VARCHAR(100) NOT NULL,                 -- Name of the food item
+    CreatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,  -- Timestamp for record creation
+    UpdatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP, -- Timestamp for record update
+    UNIQUE (DayOfMonth, DayOfWeek, FoodName)        -- Ensure no duplicate food entry for a specific day
+);
 
