@@ -12,7 +12,7 @@ CREATE TABLE Users (
 CREATE TABLE MonthOrders (
     FoodID INT PRIMARY KEY AUTO_INCREMENT,          -- Unique identifier for each food item
     DayOfMonth INT NOT NULL CHECK (DayOfMonth BETWEEN 1 AND 31), -- Day of the month (1-31)
-    DayOfWeek ENUM('شنبه', 'Sunday', 'Monday', 'Tuesday', 'Wednesday') NOT NULL, -- Allowed days
+    DayOfWeek ENUM('شنبه', 'یکشنبه', 'Monday', 'Tuesday', 'Wednesday') NOT NULL, -- Allowed days
     FoodName VARCHAR(100) NOT NULL,                 -- Name of the food item
     CreatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,  -- Timestamp for record creation
     UpdatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP, -- Timestamp for record update
