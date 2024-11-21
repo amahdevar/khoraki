@@ -9,13 +9,20 @@ CREATE TABLE Users (
     CreatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP, -- Timestamp of account creation
     UpdatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP -- Timestamp of last update
 );
-CREATE TABLE Foods (
+CREATE TABLE MonthOrders (
     FoodID INT PRIMARY KEY AUTO_INCREMENT,          -- Unique identifier for each food item
     DayOfMonth INT NOT NULL CHECK (DayOfMonth BETWEEN 1 AND 31), -- Day of the month (1-31)
-    DayOfWeek ENUM('Saturday', 'Sunday', 'Monday', 'Tuesday', 'Wednesday') NOT NULL, -- Allowed days
+    DayOfWeek ENUM('شنبه', 'Sunday', 'Monday', 'Tuesday', 'Wednesday') NOT NULL, -- Allowed days
     FoodName VARCHAR(100) NOT NULL,                 -- Name of the food item
     CreatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,  -- Timestamp for record creation
     UpdatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP, -- Timestamp for record update
     UNIQUE (DayOfMonth, DayOfWeek, FoodName)        -- Ensure no duplicate food entry for a specific day
+);
+CREATE TABLE FoodNames (
+    FoodID INT PRIMARY KEY AUTO_INCREMENT,          -- Unique identifier for each food item
+    FoodName VARCHAR(100) NOT NULL UNIQUE,          -- Name of the food item (must be unique)
+    IsActive BOOLEAN NOT NULL DEFAULT TRUE,         -- Indicates if the food is currently active or available
+    CreatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,  -- Timestamp for when the record was created
+    UpdatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP -- Timestamp for when the record was last updated
 );
 
